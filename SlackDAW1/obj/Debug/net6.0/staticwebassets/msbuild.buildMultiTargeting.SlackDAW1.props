@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\SlackDAW1.props" />
+</Project>

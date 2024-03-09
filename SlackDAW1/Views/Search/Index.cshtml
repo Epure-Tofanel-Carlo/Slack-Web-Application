@@ -1,0 +1,111 @@
+@model SlackDAW1.Models.Channel
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+
+<style>
+    .search-main {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        justify-content: start;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .search-results {
+        display: flex;
+        flex-direction: row;
+        align-items: start;
+        justify-content: start;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    button[type="submit"] {
+        background-color: #31304d;
+        border: none;
+        border-radius: 5px;
+        padding: 10px;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    button.channel-info-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        justify-content: start;
+        flex-wrap: wrap;
+        gap: 20px;
+        text-decoration: none;
+        color: white;
+        border: 1px solid #31304d;
+        border-radius: 5px;
+        padding: 10px;
+    }
+
+    button.channel-info-wrapper:hover {
+        border: 1px solid white;
+        scale: 1.1;
+        transition: 0.5s;
+    }
+
+    .channel-info {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        justify-content: start;
+        flex-wrap: wrap;
+        gap: 10px;
+        text-decoration: none;
+        color: #d2d2d2;
+    }
+
+    .channel-inner-wrapper p {
+        background-color: rgb(36, 150, 127);
+        padding: 5px;
+        border-radius: 5px;
+        color: white;
+    }
+
+    .channel-inner-wrapper {
+        display: flex;
+        flex-direction: row;
+        align-items: start;
+        justify-content: start;
+        flex-wrap: wrap;
+        gap: 20px;
+        color: white;
+    }
+</style>
+
+<div class="search-main">
+    <h2>Results for "@ViewBag.SearchString":</h2>
+
+    <div class="search-results">
+        @if (ViewBag.Channels.Count == 0)
+        {
+            <p>No channel matched your search.</p>
+        } else {
+            
+            @foreach(Channel channel in ViewBag.Channels)
+            {
+                <form action="Users/AddUserToChannel/@channel.ChannelID" method="post"> 
+                    <input type="hidden" name="channelId" value="@channel.ChannelID" />
+                    <button type="submit" class="channel-info-wrapper">
+                        <div class="channel-info">
+                            <div class="channel-inner-wrapper">
+                                <h3>@channel.ChannelName</h3>
+                                <p>#@channel.Category.CategoryName</p>
+                            </div>
+                            <p>@channel.ChannelDescription</p>
+                        </div>
+                    </button>
+                </form>
+            }
+        }
+    </div>
+</div>

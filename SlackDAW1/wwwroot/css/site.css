@@ -1,0 +1,20 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+body {
+    background-color: #161a30;
+    margin: 0px;
+    width: 100%;
+    overflow-x: hidden;
+    color: white;
+   padding-top: 100px;
+   height: 100%;
+
+}

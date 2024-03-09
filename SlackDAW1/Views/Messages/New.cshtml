@@ -1,0 +1,35 @@
+﻿@model SlackDAW1.Models.Message
+
+<div>
+    <h2>Create New Message</h2>
+
+    @using (Html.BeginForm(actionName: "New", controllerName: "Messages", method: FormMethod.Post))
+    {
+        <div class="form-group">
+            @Html.LabelFor(model => model.Body)
+            @Html.TextAreaFor(model => model.Body, new { @class = "form-control summernote", rows = 0 })
+
+            @Html.ValidationMessageFor(model => model.Body, "", new { @class = "text-danger" })
+
+            <br />
+            <input type="hidden" value="@Model.ChannelID" name="ChannelID"/>
+        </div>
+
+        <input type="submit" value="Create" class="btn btn-primary" />
+    }
+    @section Scripts {
+        <script>
+            $(document).ready(function() {
+                $('.summernote').summernote({
+                    height: 1,
+                    minHeight: null,
+                    maxHeight: null,
+                    focus: true,
+                    toolbar: [
+                        ['insert', ['link', 'picture', 'video']],
+                    ],
+                });
+            });
+        </script>
+    }
+</div>

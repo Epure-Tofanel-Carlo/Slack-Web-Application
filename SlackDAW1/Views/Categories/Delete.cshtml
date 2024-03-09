@@ -1,0 +1,6 @@
+﻿@using (Html.BeginForm())
+{
+    <input type="hidden" name="id" value="@Model.CategoryID" />
+    <input type="submit" value="Delete" class="btn btn-danger" />
+    @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-default" })
+}

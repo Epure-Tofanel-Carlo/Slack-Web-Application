@@ -1,0 +1,111 @@
+﻿<div class="user-channels-wrapper">
+    <h2>Channels</h2>
+    <div class="user-channels">
+        @if (Context.Items["UserChannels"] is IEnumerable<Channel> userChannels && userChannels.Any())
+        {
+            foreach (var channel in userChannels)
+            {
+                <a href="\Channels\Show\@channel.ChannelID">
+                    <div class="channel-wrapper">
+                        <p class="channel-name">@channel.ChannelName</p>
+                        <p class="channel-category">#@channel.Category.CategoryName</p>
+                    </div>
+                </a>
+            }
+        }
+        else
+        {
+            <p>No channels available.</p>
+        }
+    </div>
+
+    <a href="\Channels\New">
+        <button class="create-channel">Create Channel</button>
+    </a>
+</div>
+
+<style>
+    main {
+        display: flex;
+        flex-direction: row;
+        width: 100vw;
+        height: 80vh;
+        gap: 16px;
+    }
+
+    .user-channels-wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-start;
+        width: 20vw;
+        height: 100%;
+        background-color: rgb(50, 19, 122), 121, 157);
+        color: #f1f1f1;
+        border-right: 2px solid #f1f1f1;
+        padding: 20px;
+    }
+
+    .user-channels {
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        width: 100%;
+        height: 100%;
+        padding: 16px;
+        gap: 16px;
+    }
+
+    .user-channels a {
+        text-decoration: none;
+    }
+
+    .channel-wrapper {
+        display: flex;
+        flex-direction: row;
+        justify-content: start;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        padding: 16px;
+        border-radius: 8px;
+        background-color: white;
+        color: #31304d;
+        gap: 16px;
+    }
+
+    .channel-wrapper:hover {
+        background-color: #31304d;
+        color: white;
+    }
+
+    .channel-name {
+        font-size: 1.2rem;
+        font-weight: bold;
+    }
+
+    .channel-category {
+        font-size: 1rem;
+        font-weight: normal;
+        background-color: rgb(36, 150, 127);
+        color: white;
+        padding: 5px;
+        border-radius: 5px;
+    }
+
+    .create-channel {
+        width: 100%;
+        height: 50px;
+        border-radius: 8px;
+        background-color: #31304d;
+        color: white;
+        font-size: 1.2rem;
+        font-weight: bold;
+        border: none;
+        cursor: pointer;
+    }
+
+    .create-channel:hover {
+        background-color: white;
+        color: #31304d;
+    }
+</style>

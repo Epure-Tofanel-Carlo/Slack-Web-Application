@@ -1,0 +1,55 @@
+﻿@{
+    ViewBag.Title = "Categories";
+    var categoryDeletable = ViewBag.CategoryDeletable as Dictionary<int, bool>;
+    var categoryChannels = ViewBag.CategoryChannels as Dictionary<int, List<SlackDAW1.Models.Channel>>;
+    var categories = ViewBag.Categories as List<SlackDAW1.Models.Category>;
+}
+<div style="color: white">
+    <h2>Categories</h2>
+
+    @Html.ActionLink("Create New Category", "New", null, new { @class = "btn btn-primary" })
+
+    @if (categories != null && categories.Count > 0)
+    {
+        <table class="table">
+            <tr>
+                <th>Category Name</th>
+                <th>Channels</th>
+                <th>Actions</th>
+            </tr>
+
+            @foreach (var category in categories)
+            {
+                <tr>
+                    <td>@category.CategoryName</td>
+                    <td>
+                        <ul>
+                            @if (categoryChannels.ContainsKey(category.CategoryID))
+                            {
+                                foreach (var channel in categoryChannels[category.CategoryID])
+                                {
+                                    <li>@channel.ChannelName</li>
+                                }
+                            }
+                            else
+                            {
+                                <li>No channels in this category</li>
+                            }
+                        </ul>
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = category.CategoryID })
+                        @if (categoryDeletable[category.CategoryID])
+                        {
+                            @Html.ActionLink("Delete", "Delete", new { id = category.CategoryID }, new { @class = "btn btn-danger" })
+                        }
+                    </td>
+                </tr>
+            }
+        </table>
+    }
+    else
+    {
+        <p>No categories found.</p>
+    }
+</div>

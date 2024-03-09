@@ -1,0 +1,20 @@
+﻿@model SlackDAW1.Models.Category
+
+@{
+    ViewBag.Title = "Edit Category";
+}
+
+<h2>Edit Category: @Model.CategoryName</h2>
+
+@using (Html.BeginForm("Edit", "Categories", FormMethod.Post))
+{
+    @Html.HiddenFor(model => model.CategoryID)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.CategoryName)
+        @Html.TextBoxFor(model => model.CategoryName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.CategoryName, "", new { @class = "text-danger" })
+    </div>
+
+    <input type="submit" value="Save" class="btn btn-primary" />
+}

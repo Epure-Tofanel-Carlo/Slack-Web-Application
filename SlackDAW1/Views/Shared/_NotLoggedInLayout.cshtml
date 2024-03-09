@@ -1,0 +1,228 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+</head>
+<style>
+
+    * {
+        text-align: start;
+    }
+    .hero {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: top;
+        margin: 60px;
+        margin-bottom: 50px;
+    }
+
+        .hero h4 {
+            color: white;
+            font-size: 4rem;
+            margin: 0px;
+        }
+
+    .quote-wrapper img {
+        object-fit: cover;
+        position: absolute;
+        transform: translate(15vw, -25vh);
+    }
+
+    .quote {
+        width: 100%;
+        height: 30vh;
+        background-color: #d9d9d9;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+    }
+
+        .quote p {
+            color: #3e3d58;
+            font-size: 2rem;
+            font-weight: 800;
+            margin: 0;
+        }
+
+        .quote cite {
+            font-size: 2rem;
+            font-weight: 100;
+        }
+
+    .app-example-1 {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        margin: 60px;
+        margin-top: 100px;
+    }
+
+    .app-example-1-text {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        gap: 20px;
+        width: 40%
+    }
+
+        .app-example-1-text h5 {
+            font-size: 3rem;
+            color: white;
+            margin: 0;
+            font-weight: 800;
+        }
+
+        .app-example-1-text p {
+            font-size: 1.5rem;
+            color: white;
+            margin: 0;
+        }
+
+    .testimonials {
+        padding: 100px 60px 60px 30px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        background-color: #f1ece5;
+    }
+
+    .testimonial-header {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        gap: 12px;
+    }
+
+        .testimonial-header h4 {
+            font-size: 3rem;
+            color: #161a30;
+            margin: 0;
+            font-weight: 800;
+        }
+
+        .testimonial-header p {
+            font-size: 1.5rem;
+            color: #161a30;
+            margin: 0;
+        }
+
+    .sign-up-button {
+        margin-top: 80px;
+    }
+
+        .sign-up-button a {
+            text-decoration: none;
+            color: white;
+            font-size: 2.25rem;
+            padding: 20px 60px;
+            background-color: #31304d;
+        }
+
+    .testimonial-percentages {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        justify-content: space-evenly;
+        align-items: center;
+        /* width: 100%; */
+        margin-top: 100px;
+    }
+
+    .testimonial-percentage {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 0px;
+        padding-bottom: 60px;   
+    }
+
+        .testimonial-percentage h5 {
+            font-size: 3rem;
+            color: #161a30;
+            margin: 0;
+        }
+
+        .testimonial-percentage p {
+            font-size: 1.5rem;
+            color: #b6bbc4;
+            margin: 0;
+            width: 50%;
+        }
+</style>
+<body>
+    <div>
+        <div class="hero">
+            <h4>
+                Be more productive.<br>
+                Stay together.<br>
+                Enjoy!
+            </h4>
+
+            <img src="./hero-image.png" alt="hero">
+        </div>
+
+        <div class="quote-wrapper">
+            <div class="quote">
+                <p>The best to collaborate with your teammates!!</p>
+                <cite>Prof. Cezara Benegui</p>
+            </div>
+            <img src="./quote.svg" alt="quote">
+        </div>
+
+        <div class="app-example-1">
+            <div class="app-example-1-text">
+                <h5>Find faster with all the categories in one place</h5>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+            </div>
+            <img src="./app-example-1.png" alt="app-example-1">
+        </div>
+
+        <div class="app-example-1">
+            <img src="./app-example-2.png" alt="app-example-2">
+            <div class="app-example-1-text">
+                <h5>Work with your team in separate fields</h5>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+            </div>
+        </div>
+
+        <div class="testimonials">
+            <div class="testimonial-header">
+                <h4>Teams large and small rely on Slacky</h4>
+                <p>Slack securely scales up to support collaboration at the world’s biggest companies.</p>
+            </div>
+
+            <div class="sign-up-button">
+                <a href="register.php">Sign up for free</a>
+            </div>
+
+            <div class="testimonial-percentages">
+                <div class="testimonial-percentage">
+                    <h5>85%</h5>
+                    <p>of users say that Slack has improved communication*</p>
+                </div>
+
+                <div class="testimonial-percentage">
+                    <h5>86%</h5>
+                    <p>feel that their ability to work remotely has improved*</p>
+                </div>
+
+                <div class="testimonial-percentage">
+                    <h5>92%</h5>
+                    <p>feel more connected to their teams*</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

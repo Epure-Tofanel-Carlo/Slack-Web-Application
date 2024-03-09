@@ -1,0 +1,171 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+<style>
+
+    body {
+        background-color: #161a30;
+        margin: 0px;
+        width: 100%;
+        overflow-x: hidden;
+        text-align: start;
+        color: white;    }
+
+    .navbar nav {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1;
+        background-color: #161a30;
+        height: auto;
+        border-bottom: 2px solid #31304d;
+    }
+
+    .navbar a {
+        color: white;
+        font-size: 2.5rem;
+        margin: 0px;
+        text-decoration: none;
+    }
+
+    .navbar a:hover {
+		color: #b6bbc4;
+	}
+
+    .auth {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        gap: 28px;
+        padding-right: 60px;
+    }
+
+        .auth a:first-child {
+            font-size: 1.25rem;
+            color: #161a30;
+            background-color: white;
+            padding: 10px 25px;
+            text-decoration: none;
+        }
+
+            .auth a:first-child:hover {
+                background-color: #31304d;
+                color: white;
+            }
+
+        .auth a:last-child {
+            font-size: 1.25rem;
+            color: white;
+            padding: 10px 25px;
+            text-decoration: none;
+            background-color: #31304d;
+        }
+
+        .auth a:last-child:hover {
+            background-color: white;
+            color: #161a30;
+        }
+
+    .search-bar-wrapper {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 28px;
+        border: none;
+    }
+
+    .search-bar-wrapper form {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 12px;
+        border: none;
+    }
+
+    .search-bar {
+        width: 300px;
+        height: 40px;
+        border: none;
+        border-radius: 5px;
+        padding: 0px 10px;
+        font-size: 1.25rem;
+    }
+
+    .search-bar:focus {
+        outline: 1px solid #31304d;
+    }
+
+    .search-button {
+        width: 100px;
+        height: 40px;
+        border: none;
+        border-radius: 5px;
+        background-color: #31304d;
+        color: white;
+        font-size: 1.25rem;
+    }
+
+    .search-button:hover {
+        background-color: white;
+        color: #31304d;
+    }
+</style>
+
+<ul class="navbar-nav">
+@if (SignInManager.IsSignedIn(User))
+{
+        <div class="navbar">
+            <nav>
+                <div style="display: flex; flex-direction: row; align-content: center; gap: 16px; justify-content: center;" >
+                    <a href="/">Slacky</a>
+                        @if (await UserManager.IsInRoleAsync(await UserManager.GetUserAsync(User), "Admin"))
+                    {
+                        <a href="/Categories/Index"><p style="font-size: 1rem;">Manage Categories</p></a>
+                    }
+                </div>
+
+
+
+                <div class="search-bar-wrapper">
+                    <form asp-controller="Search" asp-action="Index" method="get">
+                        @if (Context.Request.Query.ContainsKey("search"))
+                        {
+                            <input type="text" name="search" value="@Context.Request.Query["search"]" class="search-bar" placeholder="Cauta un canal..."/>
+                        }
+                        else
+                        {
+                            <input type="text" name="search" class="search-bar" placeholder="Cauta un canal..."/>
+                        }
+                        <button type="submit" class="search-button">Search</button>
+                    </form>
+                </div>
+
+                <div class="auth">
+                    <a asp-area="Identity" asp-page="/Account/Manage/Index">@User.Identity?.Name</a>
+                    <a asp-area="Identity" asp-page="/Account/Logout">Logout</a>
+                </div>
+            </nav>
+        </div>
+}
+else
+{
+        <div class="navbar">
+            <nav>
+                <a href="/">Slacky</a>
+                <div class="auth">
+                    <a asp-area="Identity" asp-page="/Account/Login">Login</a>
+                    <a asp-area ="Identity" asp-page="/Account/Register">Register</a>
+                </div>
+            </nav>
+        </div>
+}
+</ul>

@@ -1,0 +1,18 @@
+﻿@model SlackDAW1.Models.Category
+
+@{
+    ViewBag.Title = "Create New Category";
+}
+
+<h2>Create New Category</h2>
+
+@using (Html.BeginForm("New", "Categories", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.LabelFor(model => model.CategoryName)
+        @Html.TextBoxFor(model => model.CategoryName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.CategoryName, "", new { @class = "text-danger" })
+    </div>
+
+    <input type="submit" value="Create" class="btn btn-primary" />
+}

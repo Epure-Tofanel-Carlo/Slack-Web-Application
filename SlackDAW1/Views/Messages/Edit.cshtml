@@ -1,0 +1,16 @@
+﻿@model SlackDAW1.Models.Message
+
+<h2>Edit Message</h2>
+
+@using (Html.BeginForm("Edit", "Messages", FormMethod.Post))
+{
+    @Html.HiddenFor(model => model.MessageID)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Body)
+        @Html.TextAreaFor(model => model.Body)
+        @Html.ValidationMessageFor(model => model.Body)
+    </div>
+
+    <input type="submit" value="Save" class="btn btn-primary" />
+}

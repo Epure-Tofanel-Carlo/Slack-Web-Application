@@ -1,0 +1,45 @@
+﻿@model SlackDAW1.Models.Channel
+
+@{
+	ViewBag.Title = "New";
+}
+<div class="container w-50 container-fluid align-self-center">
+	<h2>Create new channel</h2>
+	<br />
+
+	@using (Html.BeginForm(actionName: "New", controllerName: "Channels", method: FormMethod.Post))
+	{
+		@Html.LabelFor(model => model.ChannelName)
+		@Html.TextBoxFor(model => model.ChannelName, new { @class = "form-control" })
+		@Html.ValidationMessageFor(model => model.ChannelName, "", new { @class = "text-danger" })
+		<br />
+
+		@Html.LabelFor(model => model.ChannelDescription)
+		@Html.TextBoxFor(model => model.ChannelDescription, new { @class = "form-control" })
+		@Html.ValidationMessageFor(model => model.ChannelDescription, "", new { @class = "text-danger" })
+		<br />
+
+		@Html.LabelFor(model => model.Category)
+		@if (ViewBag.Categories != null)
+		{
+			@Html.DropDownListFor(
+				model => model.CategoryID,
+				new SelectList(ViewBag.Categories, "Value", "Text"),
+				new { @class = "form-control" }
+			);
+		}
+		else
+		{
+			<p>Error: Couldn't fetch any categories.'.</p>
+			<button><a href="/Categories/New">Reload</a></button>
+		}
+		@Html.ValidationMessageFor(model => model.Category, "", new { @class = "text-danger" })
+
+
+
+		<br />
+		@Html.ValidationSummary(false, "", new { @class = "text-danger"})
+
+		<input type="submit" value="Create" class="btn btn-primary" />
+	}
+</div>
